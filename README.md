@@ -25,7 +25,8 @@ Once your client and server code is ready here are the steps to Test your applic
 Step-4
 Deploy the server to Azure WebApp
 Please make sure to enable HTTP version, Enable HTTP 2.0 Proxy and add HTTP20_ONLY_PORT application setting as gRPC only work using http2.0 as shown below
-
+![image info](ImagesRef/app1.png)
+![image info](ImagesRef/app2.png)
 please visit [here](https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/gRPC/Linux/.NET/use_gRPC_with_dotnet.md).
 
 Step-5
@@ -33,6 +34,7 @@ Deploy the self hosted gateway on Azure API management as explianed [here](https
 
 Step-6
 Import the gRPC API in API Management and enable the http2 in API management as shown below
+![image info](ImagesRef/apim-1.png)
 [Ref this link](https://learn.microsoft.com/en-us/azure/api-management/azure-openai-api-from-specification#test-the-azure-openai-api)
 
 Step-7
