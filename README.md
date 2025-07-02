@@ -9,7 +9,7 @@ The major steps claissfied as below.
 	- Publish the .NET gRPC server to Azure WebApp
 	- Deploy the self hosted gateway on Azure API management.
 	- Import the gRPC API in API Management
-  - Update the .NET gRPC client application to test using API management. 
+ 	- Update the .NET gRPC client application to test using API management. 
 
 Step-1 
 As a first step we will be building a .NET gRPC server application. You can skip this step in case you already have gRPC server application.
