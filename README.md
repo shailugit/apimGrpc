@@ -1,4 +1,4 @@
-# How-to deploy a gRPC on Azure API management
+# How to deploy a gRPC on Azure API management
 
 This is a complete guide with steps by step process to deploy the gRPC and how to use Azure API Management to import the gRPC API.
 The major steps claissfied as below.
