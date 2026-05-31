@@ -9,26 +9,16 @@ The API Management can expose gRPC services, but with important constraints:
  - gRPC APIs are supported in Self-hosted gateway and not supported in APIM v2 tiers. 
  - You can't use the test console to test gRPC
 
-
 The major steps claissfied in two major steps
 1. Creating a gRPC server
 2. Calling the gPRC application using APIM
 
-## 1. Creating gRPC Application
+### 1. Creating gRPC Application
 Typical backend deployment steps include the following
 - Create a .NET gRPC server application
 - Create a .NET gRPC client application
 - Test the setup locally 
 - Publish the .NET gRPC server to Azure WebApp and verify the service works directly over HTTPS
-
-## 2. Calling gRPC from APIM
-Typical API deployment steps include the following
-- Deploy the self hosted gateway on Azure API management.
-- Import the gRPC API in API Management
-- Update the .NET gRPC client application to test using API management. 
-- Since gRPC requires HTTP/2 for inbound and outbound traffic make sure that you enabled HTTP/2 protocol for client traffic.
-- Go to API Management(left side blade) Settings → Protocols & Ciphers
-- Enable HTTP/2
 
 Step-1 
 As a first step we will be building a .NET gRPC server application. 
@@ -44,15 +34,24 @@ Once your client and server code is ready here are the steps to Test your applic
 
 Step-4
 Deploy the server to Azure WebApp
+To understand how-to deploy a .NET 6 gRPC app on App Service, please visit [here](https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/gRPC/Linux/.NET/use_gRPC_with_dotnet.md).
 Please make sure to enable HTTP version, **Enable HTTP 2.0 Proxy and add HTTP20_ONLY_PORT application setting as gRPC only work using http2.0 as shown below**
 ![image info](ImagesRef/app1.png)
 ![image info](ImagesRef/app2.png)
-please visit [here](https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/gRPC/Linux/.NET/use_gRPC_with_dotnet.md).
 
-Step-5
+### 2. Calling gRPC from APIM
+Typical API deployment steps include the following
+- Deploy the self hosted gateway on Azure API management.
+- Import the gRPC API in API Management
+- Update the .NET gRPC client application to test using API management. 
+- Since gRPC requires HTTP/2 for inbound and outbound traffic make sure that you enabled HTTP/2 protocol for client traffic.
+- Go to API Management(left side blade) Settings → Protocols & Ciphers
+- Enable HTTP/2
+  
+Step-1
 Deploy the self hosted gateway on Azure API management as explianed [here](https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-provision-self-hosted-gateway)
-
-Step-6
+  
+Step-2
 Import the gRPC API in API Management and enable the http2 in API management as shown below
 - Open your APIM instance in Azure Portal.
 - Go to APIs > Under Define a new API, select gRPC.
@@ -65,18 +64,18 @@ Import the gRPC API in API Management and enable the http2 in API management as 
 ![image info](ImagesRef/apim-1.png)
 [Ref this link](https://learn.microsoft.com/en-us/azure/api-management/azure-openai-api-from-specification#test-the-azure-openai-api)
 
-Step-7
-Update the .NET gRPC client application to test using API management.
+Step-3
+As a last step update the .NET gRPC client application to test or call the endpoint using API management.
 
-## Common Issues & Fixes
+### Common ssues & Fixes
 APIM cannot route the request
-Cause: .proto mismatch or wrong method name.
-Fix: Re-import correct .proto. 
+- Cause: .proto mismatch or wrong method name.As
+- Fix: Re-import correct .proto. 
 
 Backend not reachable
-Cause: HTTP/2 disabled on App Service.
-Fix: Enable HTTP/2 + HTTP2 Proxy. 
+- Cause: HTTP/2 disabled on App Service.
+- Fix: Enable HTTP/2 + HTTP2 Proxy. 
 
 Testing fails in APIM portal
-Cause: Portal does not support gRPC testing.
-Fix: Use external gRPC client. 
+- Cause: Portal does not support gRPC testing.
+- Fix: Use external gRPC client. 
